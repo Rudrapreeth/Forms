@@ -27,21 +27,27 @@
       <small>Age is required (min: 1)</small>
     </div>
 
-    <label>Hobbies:</label>
-    <div formArrayName="hobbies">
-      <div *ngFor="let hobby of hobbies.controls; let i = index">
-        <input [formControlName]="i" placeholder="Enter Hobby" />
-        <div *ngIf="hobby.invalid && hobby.touched">
-          <small>Hobby is required</small>
+    <!-- Toggle Hobbies Section -->
+    <label for="toggleHobbies" class="checkbox-label">
+      Do you have hobbies?
+      <input id="toggleHobbies" type="checkbox" (change)="showHobbies = !showHobbies" />
+    </label>
+
+    <div *ngIf="showHobbies">
+      <button type="button" (click)="addHobby()" style="background-color: navy; color: white;">Add Hobby</button>
+      <label>Hobbies:</label>
+      <div formArrayName="hobbies">
+        <div *ngFor="let hobby of hobbies.controls; let i = index">
+          <input [formControlName]="i" placeholder="Enter Hobby" />
+          <button type="button" (click)="removeHobby(i)" style="background-color: maroon; color: white;">Remove</button>
         </div>
-        <button type="button" (click)="removeHobby(i)" class="remove-hobby-btn">Remove</button>
       </div>
     </div>
-    <button type="button" (click)="addHobby()" class="add-hobby-btn">Add Hobby</button>
+
     <br>
-    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+    <button type="submit" [disabled]="userForm.invalid" style="background-color: green; color: white;">Submit</button>
     <br>
-    <button type="button" (click)="onReset()" class="reset-btn">Reset</button>
+    <button type="button" (click)="onReset()" style="background-color: gray; color: white;">Reset</button>
   </form>
 
   <!--Saved Users List-->
@@ -51,7 +57,7 @@
       <strong>Main Details:</strong> {{ user.firstName }} {{ user.lastName }} ({{ user.email }}, Age: {{ user.age }})
       <br>
       <strong>Hobbies:</strong> {{ user.hobbies.length > 0 ? user.hobbies.join(', ') : 'No hobbies added' }}
-      <button (click)="removeSavedUser(i)" class="remove-hobby-btn">Remove</button>
+      <button (click)="removeSavedUser(i)" style="background-color: red; color: white;">Remove</button>
     </li>
   </ul>
 
@@ -63,12 +69,12 @@
   </div>
 
   <!--"Clear All" Button-->
-  <button *ngIf="savedUsers.length > 0" (click)="onClearAll()" class="clear-btn">
-    Clear All
-  </button>
+  <button *ngIf="savedUsers.length > 0" (click)="onClearAll()" style="background-color: darkorange; color: white;">Clear All</button>
 
   <!--Notification-->
   <div *ngIf="notification" class="notification">
     {{ notification }}
   </div>
 </div>
+
+

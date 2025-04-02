@@ -41,6 +41,17 @@ small {
   margin-bottom: 10px;
 }
 
+/*Checkbox for hobbies*/
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.checkbox-label input {
+  cursor: pointer;
+}
+
 /* Submit Button - Primary Blue*/
 button {
   width: 100%;

@@ -12,6 +12,7 @@ export class ReactiveFormComponent {
   savedUsers: any[] = []; //Storing submitted users
   notification: string | null = null; //Notification message
   i: number | any;
+  showHobbies=false;
 
   constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
     //Initializing the Reactive Form
